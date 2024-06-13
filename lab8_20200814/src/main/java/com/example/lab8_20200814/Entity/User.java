@@ -9,17 +9,14 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Pokemon{
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-    private String location;
-    private int encounterRate;
+    private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pokemon> pokemons;
 }
