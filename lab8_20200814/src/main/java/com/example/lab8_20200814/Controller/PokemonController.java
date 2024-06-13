@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/pokemons")
+@RequestMapping("/pokemon")
 public class PokemonController {
 
 
@@ -18,11 +18,23 @@ public class PokemonController {
         this.pokemonDao = pokemonDao;
     }
 
+
+
+
     @GetMapping("/{pokemonId}/location")
-    public String getPokemonLocation(@PathVariable Long pokemonId, Model model) {
-        String location = pokemonDao.getPokemonLocation(Math.toIntExact(pokemonId));
+    public String getPokemonLocation(@PathVariable Integer pokemonId, Model model) {
+        String location = pokemonDao.getPokemonLocation(pokemonId);
         model.addAttribute("location", location);
+        System.out.println(location);
         return "pokemon_location";
+    }
+
+
+    @GetMapping("/{pokemonId}/area_encounter")
+    public String getPokemonLocationAreaEncounter(@PathVariable Integer pokemonId, Model model) {
+        String area = pokemonDao.getPokemonLocationAreaEncounter(pokemonId);
+        model.addAttribute("area", area);
+        return "pokemon_area";
     }
 
 

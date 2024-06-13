@@ -15,22 +15,6 @@ import java.util.List;
 @Component
 public class UserDao{
 
-    public List<User> listar() {
-        List<User> lista = new ArrayList<>();
-
-        RestTemplate restTemplate = new RestTemplate();
-        String endPoint = "http://localhost:8080/api/users";
-
-        ResponseEntity<User[]> responseEntity = restTemplate.getForEntity(endPoint, User[].class);
-
-        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            User[] body = responseEntity.getBody();
-            lista = Arrays.asList(body);
-        }
-
-        return lista;
-    }
-
 
 
 }
